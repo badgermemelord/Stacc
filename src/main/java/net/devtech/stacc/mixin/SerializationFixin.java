@@ -4,6 +4,7 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
+import net.minecraft.text.LiteralText;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -50,7 +51,7 @@ public abstract class SerializationFixin {
 	private void addOverflowTooltip(PlayerEntity player, TooltipContext context, CallbackInfoReturnable<List<Text>> cir) {
 		if (this.getCount() > 1000) {
 			List<Text> texts = cir.getReturnValue();
-			texts.add(1, Text.literal(FORMAT.format(this.getCount())).formatted(Formatting.GRAY));
+			texts.add(1, new LiteralText(FORMAT.format(this.getCount())).formatted(Formatting.GRAY));
 		}
 	}
 
